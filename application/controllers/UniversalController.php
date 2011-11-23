@@ -27,7 +27,7 @@ class UniversalController extends Zend_Controller_Action
 
         $this->view->cols = $cols;
         $this->view->items = $this->_model->getItems();
-        $this->_renderView($controller, $this->_getParam('action'));
+        $this->_renderView();
     }
 
     public function addAction()
@@ -53,6 +53,7 @@ class UniversalController extends Zend_Controller_Action
         }
 
         $this->view->form = $form;
+        $this->_renderView();
     }
 
     public function deleteAction()
@@ -62,8 +63,11 @@ class UniversalController extends Zend_Controller_Action
         $this->_helper->redirector(null, $this->_getParam('original_controller'));
     }
 
-    private function _renderView($controller, $action)
+    private function _renderView()
     {
+        $controller = $this->_getParam('controller');
+        $action = $this->_getParam('action');
+
         $universal = $this->getInvokeArg('bootstrap')->getOption('universal');
         if(isset($universal['page'][$controller]['view'][$action])) {
             $this->renderScript($universal['page'][$controller]['view'][$action]);
