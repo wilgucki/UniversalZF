@@ -2,6 +2,7 @@ Options +FollowSymlinks
 
 RewriteEngine On
 
+# usun ponizsza linie. zostala dodana na potrzeby zend cloud
 RewriteBase /universalzf
 
 RewriteCond %{REQUEST_FILENAME} -s [OR]
