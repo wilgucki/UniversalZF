@@ -1,9 +1,12 @@
 Options +FollowSymlinks
 
 RewriteEngine On
+
+RewriteCond %{HTTP_HOST} batman.my.phpcloud.com
+RewriteRule . - [E=REWRITEBASE:/universalzf]
+
 RewriteCond %{REQUEST_FILENAME} -s [OR]
 RewriteCond %{REQUEST_FILENAME} -l [OR]
 RewriteCond %{REQUEST_FILENAME} -d
-RewriteBase /universalzf
 RewriteRule ^.*$ - [NC,L]
 RewriteRule ^.*$ index.php [NC,L]
