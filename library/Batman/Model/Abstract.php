@@ -63,12 +63,14 @@ abstract class Batman_Model_Abstract implements Batman_Model_Interface
         if($item === null) {
             $item = $dbTable->createRow();
         }
+
         $cols = $dbTable->info(Zend_Db_Table_Abstract::COLS);
 
         foreach($data as $k => $v) {
             if(!in_array($k, $cols)) throw new Batman_Model_Exception('Column ' . $k . 'does not exist');
             $item->{$k} = $v;
         }
+
         return $item->save();
     }
 
