@@ -2,8 +2,7 @@ Options +FollowSymlinks
 
 RewriteEngine On
 
-RewriteCond %{HTTP_HOST} batman.my.phpcloud.com
-RewriteRule . - [E=REWRITEBASE:/universalzf]
+RewriteBase /universalzf
 
 RewriteCond %{REQUEST_FILENAME} -s [OR]
 RewriteCond %{REQUEST_FILENAME} -l [OR]
