@@ -1,0 +1,56 @@
+<?php
+$options = null;
+$separator = null;
+
+switch($this->element->getType()) {
+    case 'Zend_Form_Element_Radio':
+        $name = $this->element->getName();
+        $value = $this->element->getValue();
+        $attribs = array_merge($this->element->getAttribs(), array('label_class' => 'radio'));
+        $options = $this->element->getMultiOptions();
+        break;
+    case 'Zend_Form_Element_MultiCheckbox':
+        $name = $this->element->getName();
+        $value = $this->element->getValue();
+        $attribs = array_merge($this->element->getAttribs(), array('label_class' => 'checkbox'));
+        $options = $this->element->getMultiOptions();
+        break;
+    case 'Zend_Form_Element_Checkbox':
+        $name = $this->element->getName();
+        $value = $this->element->getValue();
+        $attribs = array_merge($this->element->getAttribs(), array('label_class' => 'checkbox'));
+        break;
+    case 'Zend_Form_Element_Select':
+        $name = $this->element->getName();
+        $value = $this->element->getValue();
+        $attribs = array_merge($this->element->getAttribs(), array('label_class' => 'radio'));
+        $options = $this->element->getMultiOptions();
+        break;
+    default:
+        $name = $this->element->getName();
+        $value = $this->element->getValue();
+        $attribs = $this->element->getAttribs();
+}
+?>
+<div class="control-group <?php echo $this->class; ?>">
+    <label class="control-label" for="<?php echo $this->element->getName(); ?>">
+        <?php echo $this->element->getLabel(); ?>
+    </label>
+    <div class="controls">
+        <?php echo $this->{$this->element->helper}(
+                $name,
+                $value,
+                $attribs,
+                $options,
+                $separator
+            );
+        ?>
+        <?php if(count($this->element->getMessages()) > 0): ?>
+            <span class="help-inline"><?php echo array_shift($this->element->getMessages()); ?></span>
+        <?php else: ?>
+            <?php if($this->element->getDescription() !== null): ?>
+                <span class="help-inline"><?php echo $this->element->getDescription(); ?></span>
+            <?php endif; ?>
+        <?php endif; ?>
+    </div>
+</div>

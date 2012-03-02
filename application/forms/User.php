@@ -1,13 +1,18 @@
 <?php
-class Application_Form_User extends Zend_Form
+class Application_Form_User extends Batman_Form_Horizontal
 {
     public function init()
     {
         $name = new Zend_Form_Element_Text('name');
-        $name->setLabel('Imie i nazwisko');
+        $name->setLabel('Imie i nazwisko')
+             ->setRequired(true)
+             ->addValidator(new Zend_Validate_NotEmpty());
 
         $login = new Zend_Form_Element_Text('login');
-        $login->setLabel('Login');
+        $login->setLabel('Login')
+              ->setRequired(true)
+              ->addValidator(new Zend_Validate_NotEmpty());
+
 
         $password = new Zend_Form_Element_Password('password');
         $password->setLabel('Hasło')
@@ -21,5 +26,7 @@ class Application_Form_User extends Zend_Form
         $this->addElement($login);
         $this->addElement($password);
         $this->addElement($submit);
+
+        parent::init();
     }
 }
