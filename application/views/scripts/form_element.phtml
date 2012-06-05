@@ -17,7 +17,7 @@ switch($this->element->getType()) {
         break;
     case 'Zend_Form_Element_Checkbox':
         $name = $this->element->getName();
-        $value = $this->element->getValue();
+        $value = $this->element->getCheckedValue();
         $attribs = array_merge($this->element->getAttribs(), array('label_class' => 'checkbox'));
         break;
     case 'Zend_Form_Element_Select':
